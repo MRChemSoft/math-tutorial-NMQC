@@ -21,3 +21,8 @@ dependencies:
   - linkify-it-py
   - mdit-py-plugins
   - py3dmol
+  - pywavelets
+  - pip:
+    - remotemanager
+    - pyfutile
+    - pybigdft
