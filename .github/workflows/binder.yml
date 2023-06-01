@@ -26,18 +26,18 @@ jobs:
       - name: checkout files in repo
         uses: actions/checkout@v3
 
-      - name: downcase repository name
-        run: |
-          echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+      #- name: downcase repository name
+      #  run: |
+      #    echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
       - name: update jupyter dependencies with repo2docker
         uses: jupyterhub/repo2docker-action@master
         with:
-          DOCKER_USERNAME: ${{ github.actor }}
-            #DOCKER_USERNAME: ${{ github.repository_owner }}
-          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          DOCKER_REGISTRY: ghcr.io
+          #DOCKER_USERNAME: ${{ github.actor }}
+          #DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          #DOCKER_REGISTRY: ghcr.io
           MYBINDERORG_TAG: ${{ github.event.ref }}
-          IMAGE_NAME: ${{ env.REPO }}
-            #BINDER_CACHE: true
-          PUBLIC_REGISTRY_CHECK: true
+          NO_PUSH: true
+          #IMAGE_NAME: ${{ env.REPO }}
+          #BINDER_CACHE: true
+          #PUBLIC_REGISTRY_CHECK: true
