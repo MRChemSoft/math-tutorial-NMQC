@@ -74,6 +74,12 @@ Using the `MRChem <https://github.com/MRChemSoft/mrchem/>`_ program you will lea
    notebooks/Ex-10_derivatives.ipynb
    notebooks/Ex-12_misc_math.ipynb
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Reference
+
+   zbibliography
+
 
 Course material
 ---------------
