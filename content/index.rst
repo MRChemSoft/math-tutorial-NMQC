@@ -66,9 +66,6 @@ Using the `MRChem <https://github.com/MRChemSoft/mrchem/>`_ program you will lea
    
    notebooks/vampyr-intro
    notebooks/vampyr-scf
-   notebooks/mrchem-laptop-1
-   notebooks/mrchem-laptop-2
-   notebooks/mrchem-hpc
 
 
 Course material
@@ -80,9 +77,6 @@ Course material
 
    [15 min] ; :doc:`notebooks/vampyr-intro`
    [30 min] ; :doc:`notebooks/vampyr-scf`
-   [30 min] ; :doc:`notebooks/mrchem-laptop-1`
-   [30 min] ; :doc:`notebooks/mrchem-laptop-2`
-   [30 min] ; :doc:`notebooks/mrchem-hpc`
 
 
 
