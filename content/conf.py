@@ -35,6 +35,7 @@ extensions = [
     # 'sphinx.ext.intersphinx',
     "sphinxcontrib.bibtex",
     "sphinx.ext.todo",
+    "sphinx.ext.mathjax",
     # "sphinx_thebe",
 ]
 # configure myst_nb
@@ -42,11 +43,15 @@ source_suffix = {".rst": "restructuredtext", ".ipynb": "myst-nb", ".myst": "myst
 # configure sphinxcontrib.bibtex
 bibtex_bibfiles = ["bibliography.bib"]
 # Settings for myst_nb:
-# https://myst-nb.readthedocs.io/en/latest/use/execute.html#triggering-notebook-execution
-jupyter_execute_notebooks = "off"  # no notebook execution
-# jupyter_execute_notebooks = "auto"   # *only* execute if at least one output is missing.
-# jupyter_execute_notebooks = "force"  # *always* execute notebooks
-# jupyter_execute_notebooks = "cache"  # *cache* execution outputs
+# https://myst-nb.readthedocs.io/en/latest/computation/execute.html#notebook-execution-modes
+nb_execution_mode = "off"  # no notebook execution
+myst_enable_extensions = [
+    "amsmath",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "html_image",
+]
 
 # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']
