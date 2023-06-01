@@ -1,7 +1,7 @@
 myst-nb
 sphinx
 sphinx-book-theme
-#sphinx-lesson
+sphinx-lesson
 sphinx-thebe
 sphinxcontrib-bibtex
 #matplotlib
