@@ -2,24 +2,16 @@ name: mw-tutorial
 channels:
   - conda-forge
 dependencies:
-  - mrcpp=1.4.0
-  - mrchem=1.0.2
-  - vampyr=0.2rc0=*_1
-  - pytest
+  - mrchem=1.1.2
+  - vampyr=1.0rc0
   - scipy
   - numpy
   - matplotlib
   - jupyterlab
-  - jupytext
-  - altair
   - plotly
   - pandas
-  - python=3.8
-  - openbabel
+  - python=3.10
   - pip
-  - markdown-it-py
-  - linkify-it-py
-  - mdit-py-plugins
   - py3dmol
   - pywavelets
   - pip:
