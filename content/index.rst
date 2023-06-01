@@ -64,7 +64,7 @@ Using the `MRChem <https://github.com/MRChemSoft/mrchem/>`_ program you will lea
    :maxdepth: 1
    :caption: Exercises
    
-   notebooks/vampyr-intro
+   notebooks/vampyr_intro
    notebooks/vampyr-scf
 
 
@@ -75,7 +75,7 @@ Course material
    :widths: auto
    :delim: ;
 
-   [15 min] ; :doc:`notebooks/vampyr-intro`
+   [15 min] ; :doc:`notebooks/vampyr_intro`
    [30 min] ; :doc:`notebooks/vampyr-scf`
 
 
