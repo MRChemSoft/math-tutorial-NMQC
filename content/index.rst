@@ -65,7 +65,14 @@ Using the `MRChem <https://github.com/MRChemSoft/mrchem/>`_ program you will lea
    :caption: Exercises
    
    notebooks/vampyr_intro
-   notebooks/vampyr-scf
+   notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet.ipynb
+   notebooks/Ex-4_MW-filters.ipynb
+   notebooks/Ex-6_function_proejction_1d.ipynb
+   notebooks/Ex-7_3d-grid.ipynb
+   notebooks/Ex-8_separated_representation.ipynb
+   notebooks/Ex-9_Poisson_Helmholtz.ipynb
+   notebooks/Ex-10_derivatives.ipynb
+   notebooks/Ex-12_misc_math.ipynb
 
 
 Course material
