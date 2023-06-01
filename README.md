@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MRChemSoft/multiwavelet-tutorial/master?urlpath=lab%2Ftree%2Fcontent%2Fnotebooks)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MRChemSoft/math-tutorial-NMQC/master?urlpath=lab%2Ftree%2Fcontent%2Fnotebooks)
 
 
 # Wavelet and Multiwavelet tutorial for the NMQC meeting 2023
