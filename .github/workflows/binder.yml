@@ -2,6 +2,9 @@ name: Build Notebook Container
 
 on:
   push:
+    paths:
+      - 'environment.yml'
+      - 'apt.txt'
   workflow_dispatch:
 
 concurrency: 
@@ -11,17 +14,23 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     name: Run repo2docker
+    
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
 
     - name: checkout files in repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: update jupyter dependencies with repo2docker
       uses: jupyterhub/repo2docker-action@master
       with:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ github.actor }}
+        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
         DOCKER_REGISTRY: ghcr.io
         MYBINDERORG_TAG: ${{ github.event.ref }}
         PUBLIC_REGISTRY_CHECK: true
