@@ -17,10 +17,10 @@
 
 # -- Project information -----------------------------------------------------
 project = "Multiwavelet tutorial"
-copyright = "2021, The contributors"
+copyright = "2023, The contributors"
 author = "The contributors"
 github_user = "MRChemSoft"
-github_repo_name = "multiwavelet-tutorial"  # auto-detected from dirname if blank
+github_repo_name = "math-tutorial-NMQC"  # auto-detected from dirname if blank
 github_version = "master"
 conf_py_path = "/content/"  # with leading and trailing slash
 # -- General configuration ---------------------------------------------------
@@ -62,7 +62,6 @@ exclude_patterns = [
     "jupyter_execute",
     "*venv*",
     "notebooks/solutions/*.ipynb",
-    "notebooks/visualization_*.ipynb"
 ]
 
 # -- Options for HTML output -------------------------------------------------
@@ -92,9 +91,6 @@ html_theme_options = {
         "notebook_interface": "jupyterlab",
     },
 }
-#html_sidebars = {
-#    "**": [ "navbar-logo.html", "sbt-sidebar-nav.html", "sbt-sidebar-footer.html"]
-#}
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
