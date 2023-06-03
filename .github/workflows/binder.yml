@@ -19,7 +19,7 @@ jobs:
     name: Run repo2docker
     
     permissions:
-      contents: read
+      contents: write
       packages: write
       
     steps:
