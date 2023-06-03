@@ -14,43 +14,17 @@ Using the `VAMPyR <https://github.com/MRChemSoft/vampyr/>`_ Python package you w
 - What a multiwavelet basis is and what it looks like.
 - How to use multiresolution analysis to represent functions and operators in
   1D, 2D and 3D real space.
-- How to use the Python application programming interface (API) to prototype a
-  small chemistry application.
-
-.. figure:: img/mrchem-logo.png
-   :scale: 30%
-   :alt: VAMPyR logo
-   :align: center
-
-Using the `MRChem <https://github.com/MRChemSoft/mrchem/>`_ program you will learn:
-
-- How to run ground-state SCF calculations to high numerical precision.
-- How to run linear response calculations to obtain molecular properties like
-  polarizability, magnetizability and NMR shielding tensors.
-- How to run large scale calculations using thousands of CPU cores on HPC clusters.
 
 .. prereq::
 
    Before attending this workshop, please make sure that you have the
    prerequisite software and hardware available.
 
-   Exercise 1: Multiwavelets with VAMPyR
        We will work within `Jupyter notebooks <https://jupyter.org/>`_. We have
        set up this lesson such that it can be run entirely within your browser,
        using cloud infrastructure. You can also use your own computer, provided
        that it has the necessary tools installed. If that is not the case, please
        follow these :ref:`detailed instructions <setup>`.
-
-   Exercise 2: Molecular properties with MRChem
-       We will work in a terminal environment using a traditional computational
-       chemistry workflow: writing input files, running program, parsing output
-       files. You *can* run this exercise in a terminal window in the provided
-       browser environment, but in order to get full benefit you will need access
-       to a supercomputer. Any questions on how to use a particular HPC resource
-       should be directed to the appropriate support desk. Please follow these
-       :ref:`detailed instructions <compiling>` on how to set up the necessary
-       software stack.
-
 
 .. toctree::
    :hidden:
@@ -89,7 +63,15 @@ Course material
    :delim: ;
 
    [15 min] ; :doc:`notebooks/vampyr_intro`
-   [30 min] ; :doc:`notebooks/vampyr-scf`
+   [15 min] ; :doc:`notebooks/vampyr-scf`
+   [15 min] ; :doc:`notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet.ipynb`
+   [15 min] ; :doc:`notebooks/Ex-4_MW-filters.ipynb`
+   [15 min] ; :doc:`notebooks/Ex-6_function_proejction_1d.ipynb`
+   [15 min] ; :doc:`notebooks/Ex-7_3d-grid.ipynb`
+   [15 min] ; :doc:`notebooks/Ex-8_separated_representation.ipynb`
+   [15 min] ; :doc:`notebooks/Ex-9_Poisson_Helmholtz.ipynb`
+   [15 min] ; :doc:`notebooks/Ex-10_derivatives.ipynb`
+   [15 min] ; :doc:`notebooks/Ex-12_misc_math.ipynb`
 
 
 
@@ -98,21 +80,19 @@ Course material
 Who is the course for?
 ----------------------
 
-This lesson is for researchers and students that are already familiar with traditional
-quantum chemistry methods using atom-centered basis functions like Gaussians,
-that want to learn more about:
+This lesson is for researchers and students that want to learn more about:
 
 - What are multiresolution analysis (MRA) and multiwavelets?
-- How can (and why should) MRA be applied to quantum chemical problems?
-- How to use MRA to approach complete basis set limit molecular properties on real-world molecular systems.
+- Which kind of operations can be performed with functions and
+  operators using a Multiwalvelet representation?
+- What are the advantages and disadvantages of a Multiwavelet representation.
 
-We assume that participants have:
+We assume that participants have knowledge of
 
-- A sufficiently thorough prior knowledge of self-consistent field theory, at
-  the level presented in the *Modern Quantum Chemistry* textbook by Szabo and
-  Ostlund.
-- Worked previously with other quantum chemical software packages.
-- Some familiarity with the Python programming language. :ref:`We have listed <see-also>` some online resources to refresh your Python knowledge.
+- calculus in one and several dimension 
+- vecor calculus
+- linear algebra
+- the Python programming language
 
 
 About the course
