@@ -44,7 +44,7 @@ complete with all the things you need to run the notebooks.
 
 Clone the repostory with::
 
-  $ git clone https://github.com/MRChemSoft/multiwavelet-tutorial.git
+  $ git clone https://github.com/MRChemSoft/math-tutorial-NMQC.git
 
 Then move into this repository::
 

@@ -53,15 +53,15 @@ Using the `VAMPyR <https://github.com/MRChemSoft/vampyr/>`_ Python package you w
    :widths: auto
    :delim: ;
 
-   [15 min] ; :doc:`notebooks/Ex-1_vampyr_intro`
-   [15 min] ; :doc:`notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet`
-   [15 min] ; :doc:`notebooks/Ex-4_MW-filters`
-   [15 min] ; :doc:`notebooks/Ex-6_function_proejction_1d`
-   [15 min] ; :doc:`notebooks/Ex-7_3d-grid`
-   [15 min] ; :doc:`notebooks/Ex-8_separated_representation`
-   [15 min] ; :doc:`notebooks/Ex-9_Poisson_Helmholtz`
-   [15 min] ; :doc:`notebooks/Ex-10_derivatives`
-   [15 min] ; :doc:`notebooks/Ex-12_misc_math`
+   15 min ; :doc:`notebooks/Ex-1_vampyr_intro`
+   15 min ; :doc:`notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet`
+   15 min ; :doc:`notebooks/Ex-4_MW-filters`
+   15 min ; :doc:`notebooks/Ex-6_function_proejction_1d`
+   15 min ; :doc:`notebooks/Ex-7_3d-grid`
+   15 min ; :doc:`notebooks/Ex-8_separated_representation`
+   15 min ; :doc:`notebooks/Ex-9_Poisson_Helmholtz`
+   15 min ; :doc:`notebooks/Ex-10_derivatives`
+   15 min ; :doc:`notebooks/Ex-12_misc_math`
 
 .. toctree::
    :maxdepth: 1
