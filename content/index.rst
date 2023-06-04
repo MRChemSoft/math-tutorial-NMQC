@@ -38,41 +38,36 @@ Using the `VAMPyR <https://github.com/MRChemSoft/vampyr/>`_ Python package you w
    :maxdepth: 1
    :caption: Exercises
    
-   notebooks/vampyr_intro
-   notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet.ipynb
-   notebooks/Ex-4_MW-filters.ipynb
-   notebooks/Ex-6_function_proejction_1d.ipynb
-   notebooks/Ex-7_3d-grid.ipynb
-   notebooks/Ex-8_separated_representation.ipynb
-   notebooks/Ex-9_Poisson_Helmholtz.ipynb
-   notebooks/Ex-10_derivatives.ipynb
-   notebooks/Ex-12_misc_math.ipynb
+   notebooks/Ex-1_vampyr_intro
+   notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet
+   notebooks/Ex-4_MW-filters
+   notebooks/Ex-6_function_proejction_1d
+   notebooks/Ex-7_3d-grid
+   notebooks/Ex-8_separated_representation
+   notebooks/Ex-9_Poisson_Helmholtz
+   notebooks/Ex-10_derivatives
+   notebooks/Ex-12_misc_math
+
+
+.. csv-table::
+   :widths: auto
+   :delim: ;
+
+   [15 min] ; :doc:`notebooks/Ex-1_vampyr_intro`
+   [15 min] ; :doc:`notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet`
+   [15 min] ; :doc:`notebooks/Ex-4_MW-filters`
+   [15 min] ; :doc:`notebooks/Ex-6_function_proejction_1d`
+   [15 min] ; :doc:`notebooks/Ex-7_3d-grid`
+   [15 min] ; :doc:`notebooks/Ex-8_separated_representation`
+   [15 min] ; :doc:`notebooks/Ex-9_Poisson_Helmholtz`
+   [15 min] ; :doc:`notebooks/Ex-10_derivatives`
+   [15 min] ; :doc:`notebooks/Ex-12_misc_math`
 
 .. toctree::
    :maxdepth: 1
    :caption: Reference
 
    zbibliography
-
-
-Course material
----------------
-
-.. csv-table::
-   :widths: auto
-   :delim: ;
-
-   [15 min] ; :doc:`notebooks/vampyr_intro`
-   [15 min] ; :doc:`notebooks/vampyr-scf`
-   [15 min] ; :doc:`notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet.ipynb`
-   [15 min] ; :doc:`notebooks/Ex-4_MW-filters.ipynb`
-   [15 min] ; :doc:`notebooks/Ex-6_function_proejction_1d.ipynb`
-   [15 min] ; :doc:`notebooks/Ex-7_3d-grid.ipynb`
-   [15 min] ; :doc:`notebooks/Ex-8_separated_representation.ipynb`
-   [15 min] ; :doc:`notebooks/Ex-9_Poisson_Helmholtz.ipynb`
-   [15 min] ; :doc:`notebooks/Ex-10_derivatives.ipynb`
-   [15 min] ; :doc:`notebooks/Ex-12_misc_math.ipynb`
-
 
 
 .. _learner-personas:
@@ -90,7 +85,7 @@ This lesson is for researchers and students that want to learn more about:
 We assume that participants have knowledge of
 
 - calculus in one and several dimension 
-- vecor calculus
+- vector calculus
 - linear algebra
 - the Python programming language
 
@@ -100,7 +95,8 @@ About the course
 
 
 This lesson material is developed by the MRChem group at the `Hylleraas Center for Quantum
-Molecular Sciences <https://www.mn.uio.no/hylleraas/english/>`_.
+Molecular Sciences <https://www.mn.uio.no/hylleraas/english/>`_, in
+collaboration with Robert J. Harrison, Eduard Valeev and Florian Bischoff
 
 Each lesson episode has clearly defined learning objectives and includes
 exercises and solutions, and is therefore also useful for self-learning.
@@ -181,11 +177,6 @@ There are many free resources online regarding Python and Jupyter:
   computing <https://aaltoscicomp.github.io/python-for-scicomp/>`_.
 - The `CodeRefinery <https://coderefinery.org/>`_ course `Introduction to
   Jupyter and JupyterLab <https://coderefinery.github.io/jupyter/>`_
-
-For reference material on quantum chemistry:
-
-- Helgaker, T.; Jørgensen, P.; Olsen, J. *Molecular Electronic-Structure Theory*
-- Szabo, A.; Ostlund, N. S. *Modern Quantum Chemistry: Introduction to Advanced Electronic Structure Theory*
 
 
 Credits
