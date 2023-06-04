@@ -53,15 +53,15 @@ Using the `VAMPyR <https://github.com/MRChemSoft/vampyr/>`_ Python package you w
    :widths: auto
    :delim: ;
 
-   15 min ; :doc:`notebooks/Ex-1_vampyr_intro`
-   15 min ; :doc:`notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet`
-   15 min ; :doc:`notebooks/Ex-4_MW-filters`
-   15 min ; :doc:`notebooks/Ex-6_function_proejction_1d`
-   15 min ; :doc:`notebooks/Ex-7_3d-grid`
-   15 min ; :doc:`notebooks/Ex-8_separated_representation`
-   15 min ; :doc:`notebooks/Ex-9_Poisson_Helmholtz`
-   15 min ; :doc:`notebooks/Ex-10_derivatives`
-   15 min ; :doc:`notebooks/Ex-12_misc_math`
+    ; :doc:`notebooks/Ex-1_vampyr_intro`
+    ; :doc:`notebooks/Ex-2_Ex-3_display_MW_scaling_wavelet`
+    ; :doc:`notebooks/Ex-4_MW-filters`
+    ; :doc:`notebooks/Ex-6_function_proejction_1d`
+    ; :doc:`notebooks/Ex-7_3d-grid`
+    ; :doc:`notebooks/Ex-8_separated_representation`
+    ; :doc:`notebooks/Ex-9_Poisson_Helmholtz`
+    ; :doc:`notebooks/Ex-10_derivatives`
+    ; :doc:`notebooks/Ex-12_misc_math`
 
 .. toctree::
    :maxdepth: 1
@@ -96,7 +96,8 @@ About the course
 
 This lesson material is developed by the MRChem group at the `Hylleraas Center for Quantum
 Molecular Sciences <https://www.mn.uio.no/hylleraas/english/>`_, in
-collaboration with Robert J. Harrison, Eduard Valeev and Florian Bischoff
+collaboration with Robert J. Harrison, Eduard Valeev, Florian
+Bischoff, Laura Ratcliff, Luigi Genovese.
 
 Each lesson episode has clearly defined learning objectives and includes
 exercises and solutions, and is therefore also useful for self-learning.
