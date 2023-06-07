@@ -1,6 +1,7 @@
 name: mw-tutorial
 channels:
   - conda-forge
+  - kottmann # for qc tutorial
 dependencies:
   - mrchem=1.1.2
   - vampyr=1.0rc0
@@ -14,8 +15,11 @@ dependencies:
   - pip
   - py3dmol
   - pywavelets
+  - madtequila # for qc tutorial
   - pip:
     - remotemanager
     - pyfutile
     - pybigdft
+    - tequila-basic # for qc tutorial
+    - qulacs # for qc tutorial
 
