@@ -62,6 +62,7 @@ Using the `VAMPyR <https://github.com/MRChemSoft/vampyr/>`_ Python package you w
     ; :doc:`notebooks/Ex-9_Poisson_Helmholtz`
     ; :doc:`notebooks/Ex-10_derivatives`
     ; :doc:`notebooks/Ex-12_misc_math`
+    ; :doc:`notebooks/1-Basic-Structures`
 
 .. toctree::
    :maxdepth: 1
