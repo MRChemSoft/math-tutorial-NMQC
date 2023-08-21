@@ -1,0 +1,1515 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Wavelet decomposition</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/minipres.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/hylleraas-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/hylleraas-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../">
+                    Multiwavelet tutorial
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/">Setting up your system</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Ex-1_vampyr_intro/">VAMPyR introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-2_Ex-3_display_MW_scaling_wavelet/">Wavelet example: Haar</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Ex-4_MW-filters/">Switching Representations via Two-Scale Relations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-6_function_proejction_1d/">Function projection in a MW basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-7_3d-grid/">Extension to many dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-8_separated_representation/">Separated representations of integral kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-9_Poisson_Helmholtz/">Application of Poisson and Helmholtz operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-10_derivatives/">Derivative operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-12_misc_math/">Other operations on functions in the MW basis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../zbibliography/">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MRChemSoft/math-tutorial-NMQC/master?urlpath=lab/tree/content/notebooks/WaveletAnalysis.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC/edit/master/content/notebooks/WaveletAnalysis.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC/issues/new?title=Issue%20on%20page%20%2Fnotebooks/WaveletAnalysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/WaveletAnalysis.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Wavelet decomposition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wavelet decomposition</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#function-decomposition-and-wavelet-analysis">Function decomposition and wavelet analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-single-basis-function">Plot a single basis function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#expansion-of-polynomials-and-moments-of-the-scaling-functions">Expansion of polynomials and moments of the scaling functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-magic-filter-procedure">The Magic Filter procedure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passage-matrix">Passage matrix</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-derivative-of-a-function">The second derivative of a function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#useless-material-to-be-erased">Useless material, to be erased</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="wavelet-decomposition">
+<h1>Wavelet decomposition<a class="headerlink" href="#wavelet-decomposition" title="Permalink to this heading">#</a></h1>
+<p>In this notebook we will have a bird’s eye view on the wavelet manipulation and decomposition.</p>
+<p>To ease functions maniplation and understanding, this notebook employs global variables in most of the cases.
+It is therefore adviced to pay specific attention to function definitions if modifications have to be made.</p>
+<p>Let us start with a wavelet family, which will be the basis for the following tutorial.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pywt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">family</span><span class="o">=</span><span class="s1">&#39;sym8&#39;</span>
+<span class="n">wavelet</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">Wavelet</span><span class="p">(</span><span class="n">family</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="function-decomposition-and-wavelet-analysis">
+<h1>Function decomposition and wavelet analysis<a class="headerlink" href="#function-decomposition-and-wavelet-analysis" title="Permalink to this heading">#</a></h1>
+<p>Let’s express a function in wavelet. Take the collocation of a one-dimensional gaussian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r0</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="n">sigma</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">/</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">r0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r0</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span> <span class="c1">#second derivative of a Gaussian</span>
+    <span class="k">return</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">sigma</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r0</span><span class="p">,</span><span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define the value of the x components</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">nsteps</span><span class="o">=</span><span class="mi">2048</span>
+<span class="n">h</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">nsteps</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">L</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
+<span class="n">fx</span><span class="o">=</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">f2x</span><span class="o">=</span><span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Original function (second derivative included)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f2x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e45007e100&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/77087fb29c8f2e910a86668c6bca398beadfb1909532ef151fb16b08067ea969.png" src="../../_images/77087fb29c8f2e910a86668c6bca398beadfb1909532ef151fb16b08067ea969.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">fx</span><span class="o">*</span><span class="n">h</span><span class="p">)</span> <span class="c1">#normalized</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999996
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s see which is the maximum value of the wavelet transfomr that can be applied</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">max_level</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">dwt_max_level</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">wavelet</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">max_level</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<p>We cannot perform a wavelet transform with a level higher than this for the above data.
+Let’s perform a wavelet transform of this signal</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decomposition</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">wavedec</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="n">max_level</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span>
+<span class="n">decomposition2</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">wavedec</span><span class="p">(</span><span class="n">f2x</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="n">max_level</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span> <span class="c1"># for future reference</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">decomposition</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>This decomposition gives rise to a set of coefficients ordered as follows:</p>
+<ol class="arabic simple">
+<li><p>Scaling function coefficients at the coarser level</p></li>
+<li><p>Wavelets at the coarser level</p></li>
+<li><p>Wavelets at the following levels up to <code class="docutils literal notranslate"><span class="pre">max_level</span></code></p></li>
+</ol>
+<p>We the have a set of coefficients of length <code class="docutils literal notranslate"><span class="pre">max_level</span></code> + 1.
+Each level corresponds to a central position of the basis function centered on a grid of spacing <span class="math notranslate nohighlight">\(h \cdot 2^{(M-\ell)}\)</span> where <span class="math notranslate nohighlight">\(M\)</span> is <code class="docutils literal notranslate"><span class="pre">max_level</span></code> and <span class="math notranslate nohighlight">\(\ell\)</span> is the resolution level, starting from 0 at the coarser one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">ell</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_level</span><span class="p">):</span>
+    <span class="n">newh</span><span class="o">=</span><span class="n">h</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">max_level</span><span class="o">-</span><span class="n">ell</span><span class="p">)</span>
+    <span class="n">xl</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="n">newh</span><span class="p">,</span><span class="n">L</span><span class="o">+</span><span class="n">newh</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="n">newh</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ell</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">decomposition</span><span class="p">[</span><span class="n">ell</span><span class="p">])</span> <span class="c1">#the scaling functions</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">decomposition</span><span class="p">[</span><span class="n">ell</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># the details in wavelets</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span> <span class="c1"># the original function</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e447f7cc40&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/9c3c5fde2e298a3d3ff65d65a368b1e5814fd1397a97c6d58a6d95ec00f513c0.png" src="../../_images/9c3c5fde2e298a3d3ff65d65a368b1e5814fd1397a97c6d58a6d95ec00f513c0.png" />
+</div>
+</div>
+<p>From those coefficients the original function can be rebuilt.
+Of course, neglecting some details, will reconstructu only a portion of the initial function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rebuilt</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">waverec</span><span class="p">(</span><span class="n">decomposition</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rebuilt</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">fx</span><span class="o">-</span><span class="n">rebuilt</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e447e55730&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/e0fa2c7779eddfe2adc2b5eff17db32f8dd48ea46ab1d1d84346b85ea1890078.png" src="../../_images/e0fa2c7779eddfe2adc2b5eff17db32f8dd48ea46ab1d1d84346b85ea1890078.png" />
+</div>
+</div>
+<p>Neglecting some coefficients of the wavelets would provide an approximated function</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_level</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">newd</span><span class="o">=</span><span class="n">decomposition</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">ell</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">top_level</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">newd</span><span class="p">)):</span>
+    <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">newd</span><span class="p">[</span><span class="n">ell</span><span class="p">])</span>
+    <span class="n">newd</span><span class="p">[</span><span class="n">ell</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">rebuilt</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">waverec</span><span class="p">(</span><span class="n">newd</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rebuilt</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">fx</span><span class="o">-</span><span class="n">rebuilt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e447dcf2e0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/ce5e38dcb925ef5962bd6f7814c04c1f67efc39922dba1bf7f6358f5a6428c9f.png" src="../../_images/ce5e38dcb925ef5962bd6f7814c04c1f67efc39922dba1bf7f6358f5a6428c9f.png" />
+</div>
+</div>
+<p>Here the function is so smooth that the approximation error is barely visible even in the case of just scaling functions.
+As an exercise you may play with the function smoothness and the grid spacing to verify the effect of a good/bad approximation.
+You can also alter the value of <code class="docutils literal notranslate"><span class="pre">top_level</span></code> to see what’s happening.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="plot-a-single-basis-function">
+<h1>Plot a single basis function<a class="headerlink" href="#plot-a-single-basis-function" title="Permalink to this heading">#</a></h1>
+<p>The easiest way to generate wavelet and scaling function plots is based on
+backward wavelet transforms. To generate the scaling function we start with
+a data set where all the wavelet d coefficients on all resolution levels are zero
+and where only one scaling function s coefficient is nonzero, i.e. <span class="math notranslate nohighlight">\(s_0 = 1\)</span>.
+In the case of the wavelet only one d coefficient is nonzero, i.e. <span class="math notranslate nohighlight">\(d_0 = 1\)</span>. By
+doing repeated backward transform sweeps, we express these two functions
+by skinnier and skinnier scaling functions. Since the wavelet and scaling
+functions have in general certain smoothness properties, they will be nearly
+constant within a very small interval and neighboring coefficients at very high
+resolution levels will vary very little. The average over very small intervals
+will thus be proportional to the s coefficients at sufficiently high resolution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">singlefun</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">wavedec</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nsteps</span><span class="p">),</span><span class="n">level</span><span class="o">=</span><span class="n">max_level</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span> <span class="c1"># to create a set of zero coefficients</span>
+<span class="n">data</span><span class="o">=</span><span class="n">singlefun</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#the interesting resolution (put 1 for wavelet)</span>
+<span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># to put the function at the box center</span>
+<span class="n">phi</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">waverec</span><span class="p">(</span><span class="n">singlefun</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">max_level</span> <span class="c1"># to restore the normalization</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The x coordinate of the wavelet can be inferred from the extension of the filter coefficients.
+We will show in the following that this procedure provides the correct interpretation of the results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Lw</span><span class="o">=</span><span class="n">wavelet</span><span class="o">.</span><span class="n">dec_len</span>
+<span class="n">O</span><span class="o">=</span><span class="nb">round</span><span class="p">(</span><span class="n">Lw</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">L1</span><span class="o">=-</span><span class="n">O</span>
+<span class="n">L2</span><span class="o">=</span><span class="n">L1</span><span class="o">+</span><span class="n">Lw</span>
+<span class="n">indexes</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">L1</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">L2</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">hw</span><span class="o">=</span><span class="n">Lw</span><span class="o">/</span><span class="n">nsteps</span>
+<span class="n">t</span><span class="o">=-</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">L1</span><span class="o">+</span><span class="n">hw</span><span class="p">,</span><span class="n">L2</span><span class="o">+</span><span class="n">hw</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="n">hw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indexes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">phi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e447d58790&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/b7efaf8213d8be2d45018035d1c1fed98ca8f6c104cfe863b5e51ea3ea4b4c7d.png" src="../../_images/b7efaf8213d8be2d45018035d1c1fed98ca8f6c104cfe863b5e51ea3ea4b4c7d.png" />
+</div>
+</div>
+<p>This function has compact support, and it is strictly zero outside it:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">phi</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_29756/2300695292.py:1: RuntimeWarning: divide by zero encountered in log
+  plt.plot(t,np.log(abs(phi)))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e447cdd9d0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/ea3afd550ba1bebedf7a31b1b57cb175443db711647d1c6e234b2342680cc8ac.png" src="../../_images/ea3afd550ba1bebedf7a31b1b57cb175443db711647d1c6e234b2342680cc8ac.png" />
+</div>
+</div>
+<p>We can plot the wavelet function with the same technique</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">singlefun</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">wavedec</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nsteps</span><span class="p">),</span><span class="n">level</span><span class="o">=</span><span class="n">max_level</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span> <span class="c1"># to create a set of zero coefficients</span>
+<span class="n">data</span><span class="o">=</span><span class="n">singlefun</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># to put the function at the box center</span>
+<span class="n">psi</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">waverec</span><span class="p">(</span><span class="n">singlefun</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;per&#39;</span><span class="p">,</span><span class="n">wavelet</span><span class="o">=</span><span class="n">wavelet</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">max_level</span> <span class="c1"># to restore the normalization</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">phi</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">psi</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\psi$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x14e447cb20a0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/5b02d01475d7fc6f8bc3664028b0610f2fa0904216b83b5cb2276353af9759fb.png" src="../../_images/5b02d01475d7fc6f8bc3664028b0610f2fa0904216b83b5cb2276353af9759fb.png" />
+</div>
+</div>
+<p>For the wavelet family <code class="docutils literal notranslate"><span class="pre">sym8</span></code> those functions are the basis set employed in the BigDFT code to represent the Kohn Sham orbitals (as a tensor product decomposition)</p>
+<p>For comparison with the future calculations, we can define a function which would enable to visualize the basis decompositions</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">phi_fun</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">phi</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="nb">min</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Grid spacing not compatible&#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s verify the recursion relation between scaling functions:
+$<span class="math notranslate nohighlight">\(
+\phi(x) = \sum_\mu h_\mu \phi(2*x - \mu)
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">new_phi_fun</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">newphi</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">hm</span><span class="p">,</span><span class="n">mu</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">wavelet</span><span class="o">.</span><span class="n">dec_lo</span><span class="p">,</span><span class="n">indexes</span><span class="p">):</span>
+        <span class="n">newphi</span><span class="o">+=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">hm</span> <span class="o">*</span> <span class="n">phi_fun</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">xx</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span>
+    <span class="n">new_phi_fun</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">newphi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">new_phi_fun</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">phi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e4478cfb50&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/48d1bad619c2fafd7a8ae1793cf35028d0280f6f6af059dea01940585dfecc04.png" src="../../_images/48d1bad619c2fafd7a8ae1793cf35028d0280f6f6af059dea01940585dfecc04.png" />
+</div>
+</div>
+<p>The demonstration above shows that the actual wavelet filter coefficients are (for a orthogonal family) multiplied by <span class="math notranslate nohighlight">\(\sqrt 2\)</span>.
+The <code class="docutils literal notranslate"><span class="pre">indexes</span></code> array enables us to identify the index <span class="math notranslate nohighlight">\(\mu\)</span> associated to each of the filters <span class="math notranslate nohighlight">\(h_\mu\)</span> .</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="expansion-of-polynomials-and-moments-of-the-scaling-functions">
+<h1>Expansion of polynomials and moments of the scaling functions<a class="headerlink" href="#expansion-of-polynomials-and-moments-of-the-scaling-functions" title="Permalink to this heading">#</a></h1>
+<p>The moments of the scaling functions can be easily calculated from the refinement relation:
+$<span class="math notranslate nohighlight">\(
+M_\ell \equiv \int dx \phi(x)x^\ell = \sum_\mu h_\mu \int dx \phi(2x-\mu) x^\ell =\frac{1}{2^{\ell+1}} \sum_\mu h_\mu \int dx \phi(x) \left(x+\mu\right)^\ell 
+=\frac{1}{2^{\ell+1}}  \sum_{p=0}^\ell \binom{\ell}{p} \sum_\mu h_\mu\mu^{\ell-p} \int dx \phi(x) x^p = \frac{1}{2^{\ell+1}}  \sum_{p=0}^\ell \binom{\ell}{p} H_{\ell-p} M_p
+\)</span><span class="math notranslate nohighlight">\(
+where we have introduced \)</span>H_q\equiv \sum_\mu h_\mu\mu^{q}<span class="math notranslate nohighlight">\(. Knowing that \)</span>M_0=1<span class="math notranslate nohighlight">\(, the other moments can be calculated by recursion.
+Indeed, from the above equation we have:
+\)</span><span class="math notranslate nohighlight">\(
+M_\ell  = \frac{1}{2^{\ell+1} - H_{0}}  \sum_{p=0}^{\ell-1} \binom{\ell}{p} H_{\ell-p} M_p 
+\)</span>$</p>
+<p>In our family, <span class="math notranslate nohighlight">\(H_0=2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="nb">sum</span><span class="p">(</span><span class="n">wavelet</span><span class="o">.</span><span class="n">rec_lo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.0000000000000004
+</pre></div>
+</div>
+</div>
+</div>
+<p>Therefore $<span class="math notranslate nohighlight">\(M_\ell  = \frac{1}{2^{\ell+1}-2}  \sum_{p=0}^{\ell-1} \binom{\ell}{p} H_{\ell-p} M_p\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">H</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
+    <span class="n">h</span><span class="o">=</span><span class="n">wavelet</span><span class="o">.</span><span class="n">dec_lo</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">hm</span><span class="o">*</span><span class="n">mu</span><span class="o">**</span><span class="n">q</span> <span class="k">for</span> <span class="n">hm</span><span class="p">,</span><span class="n">mu</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">indexes</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">M</span><span class="p">(</span><span class="n">ell</span><span class="p">,</span><span class="n">moments</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">moments</span><span class="p">)</span> <span class="o">==</span> <span class="n">ell</span>
+    <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">binom</span>
+    <span class="n">mom</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">binom</span><span class="p">(</span><span class="n">ell</span><span class="p">,</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">H</span><span class="p">(</span><span class="n">ell</span><span class="o">-</span><span class="n">p</span><span class="p">)</span> <span class="o">*</span><span class="n">moments</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span><span class="p">,</span><span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">moments</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">mom</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">ell</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<p>The moments of the scaling function can then be calculated as follows</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">all_moments</span><span class="p">(</span><span class="n">ell</span><span class="p">):</span>
+    <span class="n">allmom</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ell</span><span class="p">):</span>
+        <span class="n">allmom</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">M</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">allmom</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">allmom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And compared with the moments calculated explicitly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="p">(</span><span class="n">tx</span><span class="o">+</span><span class="n">hw</span><span class="p">)</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">f</span><span class="p">,</span><span class="n">tx</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">t</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.9999999999999982,
+ 0.16697723763078237,
+ 0.027881397887134344,
+ 0.12277643010775047,
+ 0.07967135953730248,
+ -0.3067534930602034,
+ -0.18990482067719489,
+ 6.757784746522602]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">all_moments</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0,
+ 0.1604180032814184,
+ 0.025733935777124725,
+ 0.12224911422565411,
+ 0.0764571288757426,
+ -0.3093136485295334,
+ -0.17778155069857998,
+ 6.766226379687443]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-magic-filter-procedure">
+<h1>The Magic Filter procedure<a class="headerlink" href="#the-magic-filter-procedure" title="Permalink to this heading">#</a></h1>
+<p>The collocation of a function can become quite difficult in wavelet basis. There are two main reasons.
+One is that the wavelet function are quite cumbersome to be expressed in real space, an the second is their smoothness properties.
+The Magic filter procedure enables to express a efficient passage matrix between the coefficients of a function expressed in wavelets and their collocation values in a real-space grid. Such a passage matrix preserves the moments of the original function up to the order of the wavelet family.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">order</span><span class="o">=</span><span class="mi">8</span>
+<span class="n">vdm</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span><span class="o">*</span><span class="n">order</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">order</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">order</span><span class="p">,</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">order</span><span class="p">):</span>
+        <span class="n">vdm</span><span class="p">[</span><span class="n">p</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">**</span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">vdm</span><span class="p">,</span><span class="n">all_moments</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">order</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.72734493e-06, -5.18598688e-05,  4.94432277e-04, -3.44128144e-03,
+        1.33726341e-02, -2.10302516e-02, -6.04895289e-02,  9.94041570e-01,
+        6.12625896e-02,  2.37382146e-02, -9.42047030e-03,  1.74723714e-03,
+       -3.01580381e-04,  8.76298448e-05, -1.29055720e-05,  8.43342473e-07])
+</pre></div>
+</div>
+</div>
+</div>
+<section id="passage-matrix">
+<h2>Passage matrix<a class="headerlink" href="#passage-matrix" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newh</span><span class="o">=</span><span class="n">h</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">max_level</span><span class="p">)</span>
+<span class="n">xl</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="n">newh</span><span class="p">,</span><span class="n">L</span><span class="o">+</span><span class="n">newh</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="n">newh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.43981911e-09,  2.55880170e-06, -6.43184707e-05, -3.82277060e-03,
+        3.07696590e-02, -9.75752250e-02,  1.73434186e-01,  3.70111075e+00,
+        6.44483351e-01,  1.02896510e-01, -2.74367209e-02,  1.08683202e-03,
+        6.12615493e-04, -1.44018017e-05,  3.68013296e-07,  6.09883958e-11])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e4478c3ca0&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/d1ff9a89092d04e44915c65333ac77c5ed8c311a9a5f8fc00c6b41b40406bf64.png" src="../../_images/d1ff9a89092d04e44915c65333ac77c5ed8c311a9a5f8fc00c6b41b40406bf64.png" />
+</div>
+</div>
+<p>We want to apply the magic filter convolution to the scaling function coeffcients of the previous function representation
+$<span class="math notranslate nohighlight">\(
+\tilde f_i \equiv \sum_j w_{i-j} s_{j} = \sum_j w_{j} s_{j+i}
+\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">convolve</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">filt</span><span class="p">,</span><span class="n">indexes</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">result</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">r</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">f</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span><span class="n">filt</span><span class="p">):</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="n">N</span> <span class="c1">#periodically wrap index if necessary</span>
+            <span class="n">r</span> <span class="o">+=</span> <span class="n">f</span><span class="o">*</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">r</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mf_f</span><span class="o">=</span><span class="n">convolve</span><span class="p">(</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">w</span><span class="p">,</span><span class="n">indexes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01953125
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">mf_f</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">max_level</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">max_level</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e44782fc10&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/cad25bab0472a602cadd2bac2a7595ecc45fb0046f627da5fc5b855644ce3668.png" src="../../_images/cad25bab0472a602cadd2bac2a7595ecc45fb0046f627da5fc5b855644ce3668.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the magic filter preserves the moments</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">mf_f</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">max_level</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="nb">sum</span><span class="p">(</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="n">max_level</span><span class="o">*</span><span class="mi">5</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.000000000000492, 1.0000000000000888)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-second-derivative-of-a-function">
+<h1>The second derivative of a function<a class="headerlink" href="#the-second-derivative-of-a-function" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K1</span><span class="o">=</span><span class="n">L1</span><span class="o">-</span><span class="n">L2</span><span class="o">+</span><span class="mi">2</span>
+<span class="n">K2</span><span class="o">=</span><span class="n">L2</span><span class="o">-</span><span class="n">L1</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">kinrange</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span><span class="n">K2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kinrange</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">kinetic_matrix</span><span class="p">():</span>
+    <span class="n">h</span><span class="o">=</span><span class="n">wavelet</span><span class="o">.</span><span class="n">dec_lo</span>
+    <span class="n">M</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">kinrange</span><span class="p">)</span>
+    <span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">ii</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span><span class="n">K2</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">jj</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">K1</span><span class="p">,</span><span class="n">K2</span><span class="p">)):</span>
+            <span class="n">aij</span><span class="o">=</span><span class="mi">0</span>
+            <span class="k">for</span> <span class="n">mu</span><span class="p">,</span><span class="n">hm</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">nu</span><span class="p">,</span><span class="n">hn</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">-</span> <span class="n">nu</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">==</span> <span class="n">j</span><span class="p">:</span>
+                        <span class="c1">#print(i,j,nu,mu)</span>
+                        <span class="n">aij</span> <span class="o">+=</span> <span class="n">hm</span><span class="o">*</span><span class="n">hn</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">ii</span><span class="p">][</span><span class="n">jj</span><span class="p">]</span><span class="o">=</span> <span class="n">aij</span>
+    <span class="k">return</span> <span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">kinetic_matrix</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_29756/209938166.py:1: RuntimeWarning: divide by zero encountered in log
+  plt.imshow(np.log(abs(A)))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x14e4477bbaf0&gt;
+</pre></div>
+</div>
+<img alt="../../_images/ee2adf602e6bd3525d5d77012d246e0fbd00fdd50edb0e39f9208cf487e86ede.png" src="../../_images/ee2adf602e6bd3525d5d77012d246e0fbd00fdd50edb0e39f9208cf487e86ede.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span><span class="p">,</span><span class="n">V</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.00000000e+00,  5.00000000e-01,  2.50000000e-01,  1.25000000e-01,
+        6.25000000e-02,  3.12500000e-02, -1.70552568e-02,  1.75858228e-02,
+        1.56250000e-02, -9.46298500e-03,  7.89430385e-03,  7.81250000e-03,
+        5.21922612e-03,  3.90624999e-03, -3.20756594e-03, -2.51114427e-03,
+        1.95312500e-03,  1.08872559e-03,  9.76562457e-04,  9.45193067e-04,
+        4.88281251e-04, -2.94905215e-04, -2.72174786e-04,  2.44140624e-04,
+        1.22070312e-04,  3.05175781e-05,  6.10351562e-05,  5.60253497e-05,
+        5.80380721e-05])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.43244744e-18, -5.60254663e-14,  1.20282398e-11,  2.19005911e-09,
+        7.70261099e-08, -4.32484260e-07,  4.96165533e-06, -9.34471633e-05,
+        8.47757458e-04, -4.56608619e-03,  1.70199594e-02, -4.90693762e-02,
+        1.27363393e-01, -4.59115569e-01,  7.35217521e-01, -4.59115569e-01,
+        1.27363393e-01, -4.90693762e-02,  1.70199594e-02, -4.56608619e-03,
+        8.47757458e-04, -9.34471633e-05,  4.96165533e-06, -4.32484260e-07,
+        7.70261099e-08,  2.19005911e-09,  1.20282398e-11, -5.60254663e-14,
+        1.43259317e-18])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">norm</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">aa</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">kinrange</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">norm</span> <span class="o">+=</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">aa</span>
+<span class="n">a</span> <span class="o">*=</span> <span class="mi">2</span><span class="o">/</span><span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-6.92377055e-18,  2.70800494e-13, -5.81387983e-11, -1.05857055e-08,
+       -3.72307630e-07,  2.09042350e-06, -2.39822852e-05,  4.51679203e-04,
+       -4.09765689e-03,  2.20702919e-02, -8.22664000e-02,  2.37178058e-01,
+       -6.15614147e-01,  2.21914659e+00, -3.55369229e+00,  2.21914659e+00,
+       -6.15614147e-01,  2.37178058e-01, -8.22664000e-02,  2.20702919e-02,
+       -4.09765689e-03,  4.51679203e-04, -2.39822852e-05,  2.09042350e-06,
+       -3.72307630e-07, -1.05857055e-08, -5.81387983e-11,  2.70800494e-13,
+       -6.92447494e-18])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Convolution with second derivative.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d2_f</span><span class="o">=</span><span class="n">convolve</span><span class="p">(</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="p">,</span><span class="n">kinrange</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">newh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">d2_f</span><span class="p">))</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">decomposition2</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9998092807207419
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">d2_f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xl</span><span class="p">,</span><span class="n">decomposition2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x14e447905370&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/a311579dfb7e8fd4e62b1d6adf385c831cc75c26f60ac4bae81bda99d02b3668.png" src="../../_images/a311579dfb7e8fd4e62b1d6adf385c831cc75c26f60ac4bae81bda99d02b3668.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="useless-material-to-be-erased">
+<h1>Useless material, to be erased<a class="headerlink" href="#useless-material-to-be-erased" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#wvl2=pywt.wavedec(datasampleL[1],&#39;db4&#39;,level=4)</span>
+<span class="n">wvl2</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">wavedec</span><span class="p">(</span><span class="n">datatest</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;db4&#39;</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wvl2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wvl2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">ipl</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Choose the set of data that will be used for the interpolation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">end</span><span class="o">=</span><span class="mi">22</span> <span class="c1">#30</span>
+<span class="n">xval</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span><span class="o">+</span><span class="n">xval</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">wvl2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">x</span><span class="p">]</span>
+<span class="n">f</span><span class="o">=</span><span class="n">ipl</span><span class="o">.</span><span class="n">splrep</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#4</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> auto
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">wvl2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">x2</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y2</span><span class="o">=</span><span class="n">ipl</span><span class="o">.</span><span class="n">splev</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span>
+<span class="c1">#plt.xlim([prestart,len(wvl2[0])])</span>
+<span class="c1">#plt.ylim(auto=True)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once the chosen interpolation has been validated we might substitute its values in the original data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wvl2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">x2</span><span class="p">]</span><span class="o">=</span><span class="n">y2</span>
+<span class="n">rebuild</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">waverec</span><span class="p">(</span><span class="n">wvl2</span><span class="p">,</span><span class="s1">&#39;db4&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">datatest</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">rebuild</span><span class="p">)</span>
+<span class="c1">#plt.loglog(datasampleH[0],datasampleH[1])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Datasignal</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">filename</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">numpy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recompose</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">decompose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">level</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="s1">&#39;db4&#39;</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">pywt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decomposition</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">wavedec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">family</span><span class="p">,</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">family</span><span class="o">=</span><span class="n">family</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span><span class="o">=</span><span class="kc">None</span>
+    <span class="k">def</span> <span class="nf">recompose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">pywt</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">d</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;xtot&#39;</span><span class="p">]]</span><span class="o">=</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recomposition</span><span class="o">=</span><span class="n">pywt</span><span class="o">.</span><span class="n">waverec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decomposition</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">family</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">quantity</span><span class="o">=</span><span class="s1">&#39;recomposed&#39;</span><span class="p">,</span><span class="n">logy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">loglog</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+        <span class="n">plscheme</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span>
+        <span class="k">if</span> <span class="n">logy</span><span class="p">:</span> <span class="n">plscheme</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span>
+        <span class="k">if</span> <span class="n">loglog</span><span class="p">:</span> <span class="n">plscheme</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span>            
+        <span class="k">if</span> <span class="n">quantity</span><span class="o">==</span><span class="s1">&#39;original&#39;</span><span class="p">:</span>
+            <span class="n">plscheme</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">plscheme</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">recomposition</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">quantity</span><span class="o">==</span><span class="s1">&#39;recomposed&#39;</span><span class="p">:</span>
+            <span class="n">plscheme</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">recomposition</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">quantity</span><span class="o">==</span><span class="s1">&#39;lowres&#39;</span><span class="p">:</span>
+            <span class="n">plscheme</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">plscheme</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span><span class="p">[</span><span class="s1">&#39;xtot&#39;</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">interpolate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">anchors</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">scipy.interpolate</span> <span class="k">as</span> <span class="nn">ipl</span>
+        <span class="kn">import</span> <span class="nn">numpy</span>
+        <span class="n">d</span><span class="o">=</span><span class="p">{}</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;anchors&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">anchors</span><span class="p">)</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;xtot&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;anchors&#39;</span><span class="p">]),</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;anchors&#39;</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">decomposition</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;anchors&#39;</span><span class="p">]]</span>
+        <span class="n">f</span><span class="o">=</span><span class="n">ipl</span><span class="o">.</span><span class="n">splrep</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;anchors&#39;</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">)</span> <span class="c1">#4</span>
+        <span class="n">d</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">ipl</span><span class="o">.</span><span class="n">splev</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s1">&#39;xtot&#39;</span><span class="p">],</span><span class="n">f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reinterpretation</span><span class="o">=</span><span class="n">d</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;lowres&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recompose</span><span class="p">()</span>
+        
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FS</span><span class="o">=</span><span class="n">Datasignal</span><span class="p">(</span><span class="s1">&#39;D16_Sample1253K.dat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FS</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">FS</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">FS</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;lowres&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">start</span><span class="o">=</span><span class="mi">20</span>
+<span class="n">end</span><span class="o">=</span><span class="mi">22</span> <span class="c1">#30</span>
+<span class="n">xval</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span><span class="o">+</span><span class="n">xval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FS</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FS</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;original&#39;</span><span class="p">,</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buffer1</span><span class="o">=</span><span class="n">Datasignal</span><span class="p">(</span><span class="s1">&#39;D16_Phosphate253K.dat&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buffer1</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">buffer1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;lowres&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FS</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">buffer1</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">xtest</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">]</span>
+<span class="n">buffer1</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">FS</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buffer1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;original&#39;</span><span class="p">,</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">FS</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;original&#39;</span><span class="p">,</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">buffer1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">FS</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buffer2</span><span class="o">=</span><span class="n">Datasignal</span><span class="p">(</span><span class="s1">&#39;D16_Succinate253K.dat&#39;</span><span class="p">)</span>
+<span class="n">buffer2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">buffer2</span><span class="o">.</span><span class="n">decompose</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">buffer2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">xtest</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">buffer2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;original&#39;</span><span class="p">,</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">buffer2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">loglog</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Wavelet decomposition</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#function-decomposition-and-wavelet-analysis">Function decomposition and wavelet analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-single-basis-function">Plot a single basis function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#expansion-of-polynomials-and-moments-of-the-scaling-functions">Expansion of polynomials and moments of the scaling functions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-magic-filter-procedure">The Magic Filter procedure</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passage-matrix">Passage matrix</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-derivative-of-a-function">The second derivative of a function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#useless-material-to-be-erased">Useless material, to be erased</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, The contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

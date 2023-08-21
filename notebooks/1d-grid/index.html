@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt;</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/minipres.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/hylleraas-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/hylleraas-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../">
+                    Multiwavelet tutorial
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/">Setting up your system</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Ex-1_vampyr_intro/">VAMPyR introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-2_Ex-3_display_MW_scaling_wavelet/">Wavelet example: Haar</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Ex-4_MW-filters/">Switching Representations via Two-Scale Relations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-6_function_proejction_1d/">Function projection in a MW basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-7_3d-grid/">Extension to many dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-8_separated_representation/">Separated representations of integral kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-9_Poisson_Helmholtz/">Application of Poisson and Helmholtz operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-10_derivatives/">Derivative operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-12_misc_math/">Other operations on functions in the MW basis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../zbibliography/">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MRChemSoft/math-tutorial-NMQC/master?urlpath=lab/tree/content/notebooks/1d-grid.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC/edit/master/content/notebooks/1d-grid.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC/issues/new?title=Issue%20on%20page%20%2Fnotebooks/1d-grid.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/1d-grid.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">vampyr</span> <span class="kn">import</span> <span class="n">vampyr1d</span> <span class="k">as</span> <span class="n">vp</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="c1"># Define a function to retrieve the centers of the end nodes of a function tree</span>
+<span class="k">def</span> <span class="nf">get_center_of_box</span><span class="p">(</span><span class="n">function_tree</span><span class="p">):</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">function_tree</span><span class="o">.</span><span class="n">nEndNodes</span><span class="p">()):</span>
+        <span class="n">roots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">function_tree</span><span class="o">.</span><span class="n">fetchEndNode</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">center</span><span class="p">())</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">roots</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+
+<span class="c1"># Define a function to plot the function and its function tree along with the quadrature points</span>
+<span class="k">def</span> <span class="nf">plot_function_and_quadrature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">function_data</span><span class="p">,</span> <span class="n">function_tree_data</span><span class="p">,</span> <span class="n">roots</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">grid</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>  <span class="c1"># Create a new figure with specified size</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">function_data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;f&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">function_tree_data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;f_tree&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Plot quadrature points and lines</span>
+    <span class="k">if</span> <span class="n">grid</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">roots</span><span class="p">,</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">colors</span><span class="p">)):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="n">y_val</span> <span class="o">=</span> <span class="n">function</span><span class="p">([</span><span class="n">root</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">y_val</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define a function to set the properties of the plot such as y and x limits, legend etc.</span>
+<span class="k">def</span> <span class="nf">set_plot_properties</span><span class="p">(</span><span class="n">y_lim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">),</span> <span class="n">x_lim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">y_lim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">x_lim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Set up the multi resolution analysis with the specified box and order</span>
+<span class="n">MRA</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">MultiResolutionAnalysis</span><span class="p">(</span><span class="n">box</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Define the function to be used</span>
+<span class="k">def</span> <span class="nf">slater_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">3.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="mf">50.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.15</span><span class="p">)))</span>
+
+<span class="c1"># Project the function onto the MRA</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">ScalingProjector</span><span class="p">(</span><span class="n">MRA</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="mf">1.0e-1</span><span class="p">)</span>
+<span class="n">f_proj</span> <span class="o">=</span> <span class="n">P</span><span class="p">(</span><span class="n">slater_function</span><span class="p">)</span>
+
+<span class="c1"># Define the colors to be used in the plot</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;black&quot;</span><span class="p">]</span>
+
+<span class="c1"># Get the roots using the function defined above</span>
+<span class="n">roots</span> <span class="o">=</span> <span class="n">get_center_of_box</span><span class="p">(</span><span class="n">f_proj</span><span class="p">)</span>
+
+<span class="c1"># Define the x-values and calculate the corresponding y-values for the function and its projection</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9999</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="n">function_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">slater_function</span><span class="p">([</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+<span class="n">function_tree_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">f_proj</span><span class="p">([</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
+
+<span class="c1"># Plot the function and its function tree along with the quadrature points</span>
+<span class="n">plot_function_and_quadrature</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">slater_function</span><span class="p">,</span> <span class="n">function_data</span><span class="p">,</span> <span class="n">function_tree_data</span><span class="p">,</span> <span class="n">roots</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Set the properties of the plot</span>
+<span class="c1"># set_plot_properties(y_lim=(-0.1, 4.0), x_lim=(0, 0.5))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">f_proj</span><span class="o">.</span><span class="n">nEndNodes</span><span class="p">()):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f_proj</span><span class="o">.</span><span class="n">fetchEndNode</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f_proj</span><span class="o">.</span><span class="n">fetchEndNode</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">lowerBounds</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f_proj</span><span class="o">.</span><span class="n">fetchEndNode</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">upperBounds</span><span class="p">())</span>
+<span class="n">help</span><span class="p">(</span><span class="n">f_proj</span><span class="o">.</span><span class="n">fetchEndNode</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[   3 |    0]  ELPAC  Norms (sq, s, w) = (     0.01005,    0.009996,   5.462e-05)
+[0.0]
+[0.125]
+[   6 |    8]  ELPAC  Norms (sq, s, w) = (     0.03792,     0.03792,   1.895e-10)
+[0.125]
+[0.140625]
+[   6 |    9]  ELPAC  Norms (sq, s, w) = (      0.1311,       0.131,   7.626e-05)
+[0.140625]
+[0.15625]
+[   5 |    5]  ELPAC  Norms (sq, s, w) = (     0.06269,     0.06269,   6.348e-08)
+[0.15625]
+[0.1875]
+[   4 |    3]  ELPAC  Norms (sq, s, w) = (    0.002875,    0.002875,   3.565e-07)
+[0.1875]
+[0.25]
+[   2 |    1]  ELPAC  Norms (sq, s, w) = (   5.448e-06,    5.14e-06,   3.081e-07)
+[0.25]
+[0.5]
+[   1 |    1]  ELPAC  Norms (sq, s, w) = (   5.936e-17,   5.065e-17,   8.714e-18)
+[0.5]
+[1.0]
+Help on FunctionNode in module vampyr._vampyr.vampyr1d object:
+
+class FunctionNode(MWNode)
+ |  Method resolution order:
+ |      FunctionNode
+ |      MWNode
+ |      pybind11_builtins.pybind11_object
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  integrate(...)
+ |      integrate(self: vampyr._vampyr.vampyr1d.FunctionNode) -&gt; float
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from MWNode:
+ |  
+ |  __str__(...)
+ |      __str__(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; str
+ |  
+ |  center(...)
+ |      center(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; List[float[1]]
+ |  
+ |  componentNorm(...)
+ |      componentNorm(self: vampyr._vampyr.vampyr1d.MWNode, arg0: int) -&gt; float
+ |  
+ |  depth(...)
+ |      depth(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; int
+ |  
+ |  hasCoefs(...)
+ |      hasCoefs(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  hasParent(...)
+ |      hasParent(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  index(...)
+ |      index(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; mrcpp::NodeIndex&lt;1&gt;
+ |  
+ |  isAllocated(...)
+ |      isAllocated(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  isBranchNode(...)
+ |      isBranchNode(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  isEndNode(...)
+ |      isEndNode(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  isGenNode(...)
+ |      isGenNode(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  isLeafNode(...)
+ |      isLeafNode(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  isRootNode(...)
+ |      isRootNode(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; bool
+ |  
+ |  lowerBounds(...)
+ |      lowerBounds(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; List[float[1]]
+ |  
+ |  nChildren(...)
+ |      nChildren(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; int
+ |  
+ |  nCoefs(...)
+ |      nCoefs(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; int
+ |  
+ |  norm(...)
+ |      norm(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; float
+ |  
+ |  scale(...)
+ |      scale(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; int
+ |  
+ |  scalingNorm(...)
+ |      scalingNorm(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; float
+ |  
+ |  squaredNorm(...)
+ |      squaredNorm(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; float
+ |  
+ |  upperBounds(...)
+ |      upperBounds(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; List[float[1]]
+ |  
+ |  waveletNorm(...)
+ |      waveletNorm(self: vampyr._vampyr.vampyr1d.MWNode) -&gt; float
+ |  
+ |  ----------------------------------------------------------------------
+ |  Static methods inherited from pybind11_builtins.pybind11_object:
+ |  
+ |  __new__(*args, **kwargs) from pybind11_builtins.pybind11_type
+ |      Create and return a new object.  See help(type) for accurate signature.
+</pre></div>
+</div>
+<img alt="../../_images/9fbe21d6045780a40a13e80e24a44bb1a21eb47a196a3f51c615a5403332be6c.png" src="../../_images/9fbe21d6045780a40a13e80e24a44bb1a21eb47a196a3f51c615a5403332be6c.png" />
+</div>
+</div>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, The contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

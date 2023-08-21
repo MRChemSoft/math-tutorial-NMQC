@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Extension to many dimensions</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_lesson.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/minipres.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Separated representations of integral kernels" href="../Ex-8_separated_representation/" />
+    <link rel="prev" title="Function projection in a MW basis" href="../Ex-6_function_proejction_1d/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/hylleraas-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/hylleraas-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../">
+                    Multiwavelet tutorial
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/">Setting up your system</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Exercises</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Ex-1_vampyr_intro/">VAMPyR introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-2_Ex-3_display_MW_scaling_wavelet/">Wavelet example: Haar</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Ex-4_MW-filters/">Switching Representations via Two-Scale Relations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-6_function_proejction_1d/">Function projection in a MW basis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Extension to many dimensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-8_separated_representation/">Separated representations of integral kernels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-9_Poisson_Helmholtz/">Application of Poisson and Helmholtz operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-10_derivatives/">Derivative operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Ex-12_misc_math/">Other operations on functions in the MW basis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../zbibliography/">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MRChemSoft/math-tutorial-NMQC/master?urlpath=lab/tree/content/notebooks/Ex-7_3d-grid.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC/edit/master/content/notebooks/Ex-7_3d-grid.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/MRChemSoft/math-tutorial-NMQC/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Ex-7_3d-grid.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/Ex-7_3d-grid.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Extension to many dimensions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-transform-in-multiple-dimensions-and-adaptive-local-refinement">Wavelet transform in multiple dimensions and adaptive local refinement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-standard-form-of-operators">Non-standard form of operators</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="extension-to-many-dimensions">
+<h1>Extension to many dimensions<a class="headerlink" href="#extension-to-many-dimensions" title="Permalink to this heading">#</a></h1>
+<p>MRA is straightforward and efficient in 1D.  Extension to multiple dimensions requires additional techniques for efficiency and good numerical conditioning:</p>
+<ul class="simple">
+<li><p>Adaptive local refinement</p></li>
+<li><p>Non-standard form of operators</p></li>
+<li><p>Separated representation of operators</p></li>
+</ul>
+<p>In this section, we examine adaptive local refinement in 2 and higher dimensions, and the non-standard form.</p>
+<section id="wavelet-transform-in-multiple-dimensions-and-adaptive-local-refinement">
+<h2>Wavelet transform in multiple dimensions and adaptive local refinement<a class="headerlink" href="#wavelet-transform-in-multiple-dimensions-and-adaptive-local-refinement" title="Permalink to this heading">#</a></h2>
+<p>Consider a 1D function <span class="math notranslate nohighlight">\(f(x)\)</span> tabulated on a grid of points <span class="math notranslate nohighlight">\(x_i, i=1,\ldots,2^n\)</span>. If you are using multiwavelets, you could instead store the scaling function coefficients. Either way, this is just a vector (<span class="math notranslate nohighlight">\(f\)</span>) of numbers.  Compression (the wavelet transformation) is a linear transformation (<span class="math notranslate nohighlight">\(W\)</span>) so we can obtain the wavelet coefficients (<span class="math notranslate nohighlight">\(\bar{f}\)</span>) as follows
+$<span class="math notranslate nohighlight">\(\bar{f} = W f\)</span>$</p>
+<p>Now consider a 2D function <span class="math notranslate nohighlight">\(f(x,y)\)</span> tablulated on a mesh formed from the tensor product of points <span class="math notranslate nohighlight">\(x_i, i=1,\ldots,2^n\)</span> and <span class="math notranslate nohighlight">\(y_i, i=1,\ldots,2^n\)</span>.  The multi-wavelet scaling functions in multiple dimensions are just the tensor product of the 1D functions (e.g., in 2D <span class="math notranslate nohighlight">\(\phi^n_{i l_x} \phi^n_{j l_y}\)</span>).  So again, either way you just have a square matrix (<span class="math notranslate nohighlight">\(F\)</span>) of numbers.</p>
+<p>To obtain the wavelet coefficients (<span class="math notranslate nohighlight">\(\bar{F}\)</span>) it is natural to apply the wavelet transformation separately in each dimension.
+$<span class="math notranslate nohighlight">\(\bar{F} = W F W^T\)</span>$.</p>
+<p>This is the so-called <em>standard form</em> and was employed in early attempts to employ multi-resolution analysis in solution of partial differential equations.  However, while it is intuitive, it leads to multiple problems</p>
+<ul class="simple">
+<li><p>adaptive local refinement is not possible since there are basis functions that are fine-scale in one dimension and coarse scale in another</p></li>
+<li><p>for the same reason the representation is numerically poorly conditioned</p></li>
+<li><p>computing this representation is expensive in memory and compute (since you need to store the entire function for the transformation to be completed).
+In the figure below,<span class="math notranslate nohighlight">\(\phi^0_0\)</span> labels the scaling function at level 0, and <span class="math notranslate nohighlight">\(\varphi^n_l\)</span> labels the wavelets at level <span class="math notranslate nohighlight">\(n\)</span> and translation <span class="math notranslate nohighlight">\(l\)</span> in each dimension.  The red areas depict the support of each 2D basis function, and you can see that some functions are long thin rectangles indicating a coarse scale in one dimension and a fine scale in the other.
+<img alt="standard form" src="../../_images/standard_form.png" /></p></li>
+</ul>
+<p>To refine locally, we need to refine in all dimensions simultaneously. First we can do this for one level of refinement. In the figure below, <span class="math notranslate nohighlight">\(\phi(x)\)</span> denotes the 1D scaling function (and <span class="math notranslate nohighlight">\(\varphi(x)\)</span> the wavelet) at the coarsest scale <span class="math notranslate nohighlight">\(n=0\)</span>.  Hence, using translation and dilation, <span class="math notranslate nohighlight">\(\sqrt{2} \phi(2x)\)</span> and <span class="math notranslate nohighlight">\(\sqrt{2} \phi(2x-1)\)</span> are the scaling functions at level <span class="math notranslate nohighlight">\(n=1\)</span>.  <span class="math notranslate nohighlight">\(V_0\)</span> and <span class="math notranslate nohighlight">\(V_1\)</span> are the space of functions spanned by the scaling functions at levels <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>, respectively. Finally, the space of wavelets at level <span class="math notranslate nohighlight">\(0\)</span> is defined as <span class="math notranslate nohighlight">\(W_0 = V_1 - V_0\)</span>.
+<img alt="local1" src="../../_images/local1.png" /></p>
+<p>Next we just do this with local recursion.  The resulting basis spans exactly the same space as the standard form — we’ve just performed an orthogonal transformation.  If you look at the red-boxes that label the support of the basis functions, you can see that each box is square as a result of each dimension being simultaneously refined.<br />
+<img alt="local2" src="../../_images/local2.png" /></p>
+<p>Finally, adaptive local refinement is now possible by simply discarding boxes with small wavelet coefficients.</p>
+<p>The following example displays the adapative numerical mesh for an exponential (Slater) function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">vampyr</span> <span class="kn">import</span> <span class="n">vampyr3d</span> <span class="k">as</span> <span class="n">vp</span>
+
+<span class="c1"># Import the grid plotter function from your plotter module</span>
+<span class="kn">from</span> <span class="nn">plotter</span> <span class="kn">import</span> <span class="n">grid_plotter</span>
+
+<span class="c1"># Set up the multi resolution analysis with the specified box and order</span>
+<span class="n">MRA</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">MultiResolutionAnalysis</span><span class="p">(</span><span class="n">box</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Define the function to be used (in this case, a Slater function centered at 0.5)</span>
+<span class="k">def</span> <span class="nf">slater_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># Calculate the distance from 0.5</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="mf">50.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>  <span class="c1"># Return the Slater function value</span>
+
+<span class="c1"># Project the function onto the MRA</span>
+<span class="n">P_eps</span> <span class="o">=</span> <span class="n">vp</span><span class="o">.</span><span class="n">ScalingProjector</span><span class="p">(</span><span class="n">MRA</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="mf">1.0e-2</span><span class="p">)</span>
+<span class="n">f_tree</span> <span class="o">=</span> <span class="n">P_eps</span><span class="p">(</span><span class="n">slater_function</span><span class="p">)</span>
+
+<span class="c1"># Use the grid plotter to visualize the function tree</span>
+<span class="n">grid_plotter</span><span class="p">(</span><span class="n">f_tree</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 900x900 with 1 Axes&gt;, &lt;Axes3DSubplot:&gt;)
+</pre></div>
+</div>
+<img alt="../../_images/f1b109b18a9947bb971594ef6c0182fb915353fc0b9f749c76abe72a3f198d40.png" src="../../_images/f1b109b18a9947bb971594ef6c0182fb915353fc0b9f749c76abe72a3f198d40.png" />
+</div>
+</div>
+</section>
+<section id="non-standard-form-of-operators">
+<h2>Non-standard form of operators<a class="headerlink" href="#non-standard-form-of-operators" title="Permalink to this heading">#</a></h2>
+<p>The non-standard form of operators was introduced (Gregory Beylkin, Vani Cheruvu, and Fernando Pérez, “Fast adaptive algorithms in the non-standard form for multidimensional problems,” Appl. Comput. Harmon. Anal., 24, pp. 354–377, 2008) to address the disadvatages of the standard form.</p>
+<p>Consider a linear operator (<span class="math notranslate nohighlight">\(T\)</span>) acting on a function <span class="math notranslate nohighlight">\(f(x)\)</span> in 1 or more dimensions
+$<span class="math notranslate nohighlight">\( (T f)(x) = \int K(x,y) f(y) dy \)</span><span class="math notranslate nohighlight">\(
+You can see that even a &quot;1D&quot; operator involves a kernel \)</span>K(x,y)$ that is a 2D function.  Hence, all of the concerns we had above about representing functions beyond 1D reappear for operators.</p>
+<p>Standard form of operators:</p>
+<ul class="simple">
+<li><p>Matrix elements between different length scales</p></li>
+<li><p>Not very efficient on modern computers with deep memory hierarchies</p></li>
+<li><p>Potentially O(Nlog N) non-zero terms even for operators smooth at long range</p></li>
+<li><p>Hard to calculate matrix elements, high-memory use</p></li>
+</ul>
+<p>Non-standard form of operators:</p>
+<ul class="simple">
+<li><p>No matrix elements between lengths scales</p></li>
+<li><p>O(N) terms for operators smooth at long range</p></li>
+<li><p>Act on (modified) non-standard form of functions</p></li>
+<li><p>Easy to calculate matrix elements</p></li>
+<li><p>Translation invariant operators yield Topelitz matrices (i.e., only one unique block per super diagonal)</p></li>
+</ul>
+<p>The derivation of the non-standard form is very instructive and starts with the telescoping series that is central to understanding multiresolution.</p>
+<p>Let <span class="math notranslate nohighlight">\(V_n\)</span> be the space of scaling functions at level <span class="math notranslate nohighlight">\(n\)</span> of refinement.  For simplicity, this might just be function values tablulated on a mesh at level <span class="math notranslate nohighlight">\(n\)</span> of refinement.  Consider now a ladder of such spaces with the property that each coarse mesh is exactly contained as a subset of finer meshes
+$<span class="math notranslate nohighlight">\(V_0 \subset V_1 \subset \cdots \subset V_{n-1} \subset V_n\)</span><span class="math notranslate nohighlight">\(
+We can then write the telescoping series
+\)</span><span class="math notranslate nohighlight">\(V_n = V_0 + (V_1 - V_0) + \cdots + (V_n - V_{n-1})\)</span>$
+which is the sum of space of functions at the coarsest level plus corrections at successive levels of refinement.</p>
+<p>The space of wavelets at level <span class="math notranslate nohighlight">\(n\)</span> is defined as <span class="math notranslate nohighlight">\(W_n = V_{n} - V_{n-1}\)</span>, which is the orthgonal complement of <span class="math notranslate nohighlight">\(V_{n-1}\)</span> in <span class="math notranslate nohighlight">\(V_n\)</span>.  Thus,
+$<span class="math notranslate nohighlight">\(V_n = V_0 + \sum_{m=0}^{n-1} W_m\)</span><span class="math notranslate nohighlight">\(
+I.e., we have decomposed a function represented in \)</span>V_n$ as a sum of scaling functions at the coarsest level plus wavelets at levels.</p>
+<p>Define <span class="math notranslate nohighlight">\(P_n\)</span> to be a projector onto <span class="math notranslate nohighlight">\(V_n\)</span> and <span class="math notranslate nohighlight">\(Q_n\)</span> to be a projector onto <span class="math notranslate nohighlight">\(W_n\)</span>.  By the definition of <span class="math notranslate nohighlight">\(W_n\)</span>, we have <span class="math notranslate nohighlight">\(P_n = P_{n-1} + Q_{n-1}\)</span>.</p>
+<p>The representation of an operator <span class="math notranslate nohighlight">\(T\)</span> at level <span class="math notranslate nohighlight">\(n\)</span> is
+$<span class="math notranslate nohighlight">\(T_n = P_n T P_n\)</span><span class="math notranslate nohighlight">\(
+This takes an function at level \)</span>n<span class="math notranslate nohighlight">\(, applies the operator, and projects the result back to level \)</span>n$.</p>
+<p>The derivation of the non-standard form proceeds as follows
+$<span class="math notranslate nohighlight">\(
+T_n = P_n T P_n \\
+ = (P_{n-1} + Q_{n-1}) T (P_{n-1} + Q_{n-1}) \\
+ = P_{n-1} T P_{n-1} + Q_{n-1} T Q_{n-1} + Q_{n-1} T P_{n-1} + P_{n-1} T Q_{n-1} \\
+ = T_{n-1} + A_{n-1} + B_{n-1} + C_{n-1} \\
+ = T_0 + \sum_{m=0}^{n-1} {(A_m + B_m + C_m)}
+\)</span>$
+Note that each operator acts and produces results on the same length scale.</p>
+<ul class="simple">
+<li><p>It is called the non-standard form because the input function needs to provide both scaling function coefficients and wavelet coefficients at all levels (which is redundant information — normally we would only store scaling function coefficients at the coarsest level and wavelet coefficients at all levels).</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_m\)</span> acts on wavelets at level <span class="math notranslate nohighlight">\(m\)</span> and produces wavelets at the same level.  If <span class="math notranslate nohighlight">\(T\)</span> is the Coulomb operator and you are using an order <span class="math notranslate nohighlight">\(k\)</span> multiwavelet basis, then elements of <span class="math notranslate nohighlight">\(A_m\)</span> decay as <span class="math notranslate nohighlight">\(r^{2k+1}\)</span> (which you can see by considering the multipole expansion).</p></li>
+<li><p><span class="math notranslate nohighlight">\(B_m\)</span> acts on scaling functions at level <span class="math notranslate nohighlight">\(m\)</span> and produces wavelets, and v.v. for <span class="math notranslate nohighlight">\(C_m\)</span>.  For the Coulomb operator their matrix elements decay as <span class="math notranslate nohighlight">\(r^{k+1}\)</span>.</p></li>
+<li><p>Every block of each operator can be applied independently, hence there is massive parallelism.</p></li>
+<li><p>The result will also be produced in non-standard form.  Hence, after applying the operator, the scaling coefficients must be summed up the tree using a modified fast wavelet transform to restore the standard compressed representation of the result.</p></li>
+</ul>
+<p>Finally, the non-standard form matrix elements are readily computed from matrix elements of the operator over the scaling function basis and the two-scale relationship.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Ex-6_function_proejction_1d/"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Function projection in a MW basis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Ex-8_separated_representation/"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Separated representations of integral kernels</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-transform-in-multiple-dimensions-and-adaptive-local-refinement">Wavelet transform in multiple dimensions and adaptive local refinement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-standard-form-of-operators">Non-standard form of operators</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023, The contributors.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
